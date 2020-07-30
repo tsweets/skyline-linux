@@ -1,2 +1,3 @@
 ---
 # vars file for system
+skyline_sysrq_value: "1"
