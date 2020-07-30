@@ -1,0 +1,5 @@
+---
+# tasks file for packages
+
+- include_tasks:
+  - vs-code.yml
