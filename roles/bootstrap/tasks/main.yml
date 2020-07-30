@@ -1,0 +1,8 @@
+---
+# tasks file for bootstrap
+
+# Enable SSH Daemon
+- name: Ensure SSHd is running
+  systemd:
+    name: sshd.service
+    state: started
