@@ -1,4 +1,23 @@
 ---
 # tasks file for packages
 
+- name: Remove unwanted common packages
+  dnf:
+    name: "{{ skyline_packages_common['remove'] }}"
+    state: absent
+    autoremove: no
+  register: dnf_remove_result
+  until: dnf_remove_result is succeeded
+  become: true
+
+- name: Install common packages
+  dnf:
+    name: "{{ skyline_packages_common['install'] }}"
+    state: present
+  register: dnf_install_result
+  until: dnf_install_result is succeeded
+  become: true
+
+
+
 - include_tasks: vs-code.yml

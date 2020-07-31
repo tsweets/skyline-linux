@@ -1,0 +1,50 @@
+---
+# Import RPMFusion GPG keys
+- name: Import RPMFusion Free GPG key
+  rpm_key:
+    key: "{{ korora_rpmfusion_free_key }}"
+    state: present
+  register: rpm_key_rpmfusion_free_result
+  until: rpm_key_rpmfusion_free_result is succeeded
+  become: true
+
+- name: Import RPMFusion Nonfree GPG key
+  rpm_key:
+    key: "{{ korora_rpmfusion_nonfree_key }}"
+    state: present
+  register: rpm_key_rpmfusion_nonfree_result
+  until: rpm_key_rpmfusion_nonfree_result is succeeded
+  become: true
+
+# Enable RPMFusion repos
+- name: Install RPMFusion free release RPM
+  dnf:
+    name: "{{ korora_rpmfusion_free_rpm }}"
+    state: present
+  register: dnf_rpmfusion_free_result
+  until: dnf_rpmfusion_free_result is succeeded
+  become: true
+
+- name: Install RPMFusion nonfree release RPM
+  dnf:
+    name: "{{ korora_rpmfusion_nonfree_rpm }}"
+    state: present
+  register: dnf_rpmfusion_nonfree_result
+  until: dnf_rpmfusion_nonfree_result is succeeded
+  become: true
+
+- name: Install RPMFusion tainted free release RPM
+  dnf:
+    name: rpmfusion-free-release-tainted
+    state: present
+  register: dnf_install_tainted_free_result
+  until: dnf_install_tainted_free_result is succeeded
+  become: true
+
+- name: Install RPMFusion tainted nonfree release RPM
+  dnf:
+    name: rpmfusion-nonfree-release-tainted
+    state: present
+  register: dnf_install_tainted_nonfree_result
+  until: dnf_install_tainted_nonfree_result is succeeded
+  become: true

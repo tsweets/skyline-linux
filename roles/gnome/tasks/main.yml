@@ -1,0 +1,165 @@
+---
+- name: "Install look and feel packages for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_packages_lookandfeel_gnome['install'] }}"
+    state: present
+  register: dnf_lookfeel_result
+  until: dnf_lookfeel_result is succeeded
+  become: true
+
+- name: "Install favourite apps for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_shell_favourites['install'] }}"
+    state: present
+  register: dnf_shell_favourites_result
+  when: skyline_shell_favourites['install'] is defined and skyline_shell_favourites['install']
+  until: dnf_shell_favourites_result is succeeded
+  become: true
+
+- name: "Install Shell extensions for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_shell_extensions['install'] }}"
+    state: present
+  register: dnf_shell_extensions_result
+  when: skyline_shell_extensions['install'] is defined and skyline_shell_extensions['install']
+  until: dnf_shell_extensions_result is succeeded
+  become: true
+
+- name: "Install GTK theme for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_gtk_theme['install'] }}"
+    state: present
+  register: dnf_gtk_theme_result
+  when: skyline_gtk_theme['install'] is defined and skyline_gtk_theme['install']
+  until: dnf_gtk_theme_result is succeeded
+  become: true
+
+- name: "Install Shell theme for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_shell_theme['install'] }}"
+    state: present
+  register: dnf_shell_theme_result
+  when: skyline_shell_theme['install'] is defined and skyline_shell_theme['install']
+  until: dnf_shell_theme_result is succeeded
+  become: true
+
+- name: "Install icon theme for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_icon_theme['install'] }}"
+    state: present
+  register: dnf_icon_theme_result
+  when: skyline_icon_theme['install'] is defined and skyline_icon_theme['install']
+  until: dnf_icon_theme_result is succeeded
+  become: true
+
+- name: "Install cursor theme for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_cursor_theme['install'] }}"
+    state: present
+  register: dnf_cursor_theme_result
+  when: skyline_cursor_theme['install'] is defined and skyline_cursor_theme['install']
+  until: dnf_cursor_theme_result is succeeded
+  become: true
+
+- name: "Install desktop font for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_desktop_font['install'] }}"
+    state: present
+  register: dnf_desktop_font_result
+  when: skyline_desktop_font['install'] is defined and skyline_desktop_font['install']
+  until: dnf_desktop_font_result is succeeded
+  become: true
+
+- name: "Install desktop document font for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_desktop_document_font['install'] }}"
+    state: present
+  register: dnf_desktop_document_font_result
+  when: skyline_desktop_document_font['install'] is defined and skyline_desktop_document_font['install']
+  until: dnf_desktop_document_font_result is succeeded
+  become: true
+
+- name: "Install desktop monospace font for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_desktop_monospace_font['install'] }}"
+    state: present
+  register: dnf_desktop_monospace_font_result
+  when: skyline_desktop_monospace_font['install'] is defined and skyline_desktop_monospace_font['install']
+  until: dnf_desktop_monospace_font_result is succeeded
+  become: true
+
+- name: "Install desktop titlebar font for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_desktop_titlebar_font['install'] }}"
+    state: present
+  register: dnf_desktop_titlebar_font_result
+  when: skyline_desktop_titlebar_font['install'] is defined and skyline_desktop_titlebar_font['install']
+  until: dnf_desktop_titlebar_font_result is succeeded
+  become: true
+
+- name: "Install terminal font for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_terminal_font['install'] }}"
+    state: present
+  register: dnf_terminal_font_result
+  when: skyline_terminal_font['install'] is defined and skyline_terminal_font['install']
+  until: dnf_terminal_font_result is succeeded
+  become: true
+
+- name: "Install background image for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_background_image['install'] }}"
+    state: present
+  register: dnf_background_image_result
+  when: skyline_background_image['install'] is defined and skyline_background_image['install']
+  until: dnf_background_image_result is succeeded
+  become: true
+
+- name: "Install screensaver image for {{ skyline_desktop }}"
+  dnf:
+    name: "{{ skyline_screensaver_image['install'] }}"
+    state: present
+  register: dnf_screensaver_image_result
+  when: skyline_screensaver_image['install'] is defined and skyline_screensaver_image['install']
+  until: dnf_screensaver_image_result is succeeded
+  become: true
+
+## Set GNOME terminal config
+- name: Get terminal UUID
+  shell: set -o pipefail && dconf read /org/gnome/terminal/legacy/profiles:/default | tr -d \'
+  register: gnome_terminal_uuid
+  changed_when: false
+  args:
+    executable: /usr/bin/bash
+  become: true
+
+- name: Ensure directory exists for terminal profile
+  file:
+    dest: /etc/dconf/db/local.d
+    state: directory
+    owner: root
+    group: root
+    mode: "u=rwx,g=rx,o=rx"
+  become: true
+
+- name: Configure GNOME terminal profile
+  template:
+    src: 00_skyline_terminal.j2
+    dest: /etc/dconf/db/local.d/00_skyline_terminal
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+  notify:
+    - Reload dconf
+  become: true
+
+- name: Configure GNOME overrides
+  template:
+    src: org.skylineproject.gschema.override.j2
+    dest: /usr/share/glib-2.0/schemas/org.skylineproject.gschema.override
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+  notify:
+    - Compile gschema
+  become: true

@@ -1,0 +1,87 @@
+## Look and feel packages for Skyline desktops
+skyline_packages_lookandfeel_gnome:
+  install:
+    - gnome-tweaks
+
+
+skyline_terminal_font:
+  name: "Fira Mono 11"
+  install:
+    - mozilla-fira-mono-fonts   
+
+skyline_background_image:
+  name: /usr/share/backgrounds/f28/extras/f28-extras.xml
+  install:
+    - f28-backgrounds-extras-base 
+
+skyline_screensaver_image:
+  name: /usr/share/backgrounds/f28/extras/f28-extras.xml
+  install:
+    - f28-backgrounds-extras-base
+
+skyline_desktop: gnome
+skyline_desktop_font:
+  name: "Open Sans 11"
+  install:
+    - open-sans-fonts
+skyline_desktop_document_font:
+  name: "Open Sans 11"
+  install:
+    - open-sans-fonts
+skyline_desktop_monospace_font:
+  name: "Droid Sans Mono Regular 11"
+  install:
+    - google-droid-sans-mono-fonts
+skyline_desktop_titlebar_font:
+  name: "Open Sans Bold 11"
+  install:
+    - open-sans-fonts
+skyline_gtk_theme:
+  name: Arc
+  install:
+    - arc-theme
+skyline_cursor_theme:
+  name: breeze_cursors
+  install:
+    - breeze-cursor-theme
+skyline_icon_theme:
+  name: Numix-Circle
+  install:
+    - numix-icon-theme-circle
+skyline_shell_theme:
+  name: Arc
+  install:
+    - arc-theme    
+
+skyline_shell_extensions:
+  enable:
+    - places-menu@gnome-shell-extensions.gcampax.github.com
+    - xrandr-indicator@gnome-shell-extensions.gcampax.github.com
+    - user-theme@gnome-shell-extensions.gcampax.github.com
+    - drive-menu@gnome-shell-extensions.gcampax.github.com
+    - alternative-status-menu@gnome-shell-extensions.gcampax.github.com
+    - openweather-extension@jenslody.de
+    - dash-to-dock@micxgx.gmail.com
+    - workspaces-to-dock@passingthru67.gmail.com
+  install:
+    - gnome-shell-extension-dash-to-dock
+    - gnome-shell-extension-drive-menu
+    - gnome-shell-extension-openweather
+    - gnome-shell-extension-places-menu
+    - gnome-shell-extension-user-theme
+skyline_shell_favourites_defaults:
+  apps:
+    - firefox.desktop
+    - org.gnome.Evolution.desktop
+    - vlc.desktop
+    - shotwell.desktop
+    - libreoffice-writer.desktop
+    - org.gnome.Documents.desktop
+    - org.gnome.Nautilus.desktop
+    - org.gnome.Software.desktop
+    - org.gnome.Terminal.desktop
+  install:
+    - firefox
+    - shotwell
+    - vlc    
+skyline_shell_favourites: "{{ skyline_shell_favorites | default(skyline_shell_favourites_defaults) }}"

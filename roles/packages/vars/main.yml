@@ -1,2 +1,135 @@
 ---
 # vars file for packages
+
+## Default set of packages common to all Sklyine desktops
+skyline_packages_common:
+  install:
+    # Archiving
+    - p7zip
+    - p7zip-plugins
+
+    # Cloud
+    - owncloud-client
+
+    # Images
+    - gimp
+    - inkscape
+
+    # Device support
+    - akmods
+    - cups-bjnp
+    - dkms
+    - epson-inkjet-printer-escpr # support for recent Epson inkjet printers
+    - hplip # support for extra HP printers
+    - kernel-devel
+    - libsane-hpaio # support for extra HP scanners
+    - libva-intel-driver # HW video decode for intel
+    - lm_sensors-sensord
+    - memtest86+
+    - pptp-setup
+    - sane-backends
+    - sane-backends-drivers-cameras
+    - sane-backends-drivers-scanners
+    - spice-server
+    - spice-vdagent
+    - splix
+
+    # Filesystems
+    - btrfs-progs
+    - exfat-utils
+    - fuse
+    - fuse-exfat
+    - gparted
+
+    # Multimedia
+    - HandBrake-gui
+    - alsa-plugins-pulseaudio
+    - alsa-utils
+    - ffmpegthumbnailer
+    - flac
+    - gphoto2 #for camera support in shotwell
+    - gstreamer-ffmpeg
+    - gstreamer1-libav
+    - gstreamer1-plugins-bad-free
+    - gstreamer1-plugins-bad-free-extras
+    - gstreamer1-plugins-bad-freeworld
+    - gstreamer1-plugins-good
+    - gstreamer1-plugins-good-extras
+    - gstreamer1-plugins-ugly
+    - lame
+    - libaacs
+    - libbluray
+    - libdvdnav
+    - libdvdread
+    - libvpx-utils
+    - pavucontrol
+    - raw-thumbnailer
+    - shotwell
+    - vlc
+    - vlc-extras
+    - vorbis-tools
+
+    # Office/Productivity Suite
+    - "@libreoffice"
+    - libreoffice-langpack-en
+    - libreoffice-ogltrans
+    - libreoffice-opensymbol-fonts
+    - libreoffice-pdfimport
+    - libreoffice-ure
+    - libreoffice-xsltfilter
+
+    # Package Management
+    - PackageKit-gstreamer-plugin
+    - dnf-plugin-system-upgrade
+    - dnf-plugins-core
+    - python3-dnf-plugin-tracer
+
+    # System/Development
+    - android-tools
+    - aspell-en
+    - chrony
+    - cowsay
+    - expect
+    - fdupes
+    - fpaste
+    - fprintd-pam
+    - frei0r-plugins
+    - gcc
+    - git
+    - htop
+    - mlocate
+    - ntfsprogs
+    - powertop
+    #- pybluez
+    - redhat-lsb-core
+    - vim
+
+    # System Administration/Configuration
+    - firewall-config
+    - fonts-tweak-tool
+    - liveusb-creator
+    - policycoreutils-gui
+    - screen
+    - screenfetch
+    - setools-console
+    - tmux
+
+    # Terminal Enhancements
+    - bash-completion
+    - PackageKit-command-not-found
+
+    # Web
+    - firefox
+    - mozilla-ublock-origin
+  remove:
+    - abrt
+    - gnome-abrt
+    - ntp
+    - system-config-date
+    - system-config-firewall
+    - system-config-firewall-base
+    - system-config-firewall-tui
+    - system-config-keyboard
+    - system-config-language
+    - system-config-services
+    - system-config-users
