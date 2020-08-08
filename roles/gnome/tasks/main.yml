@@ -1,4 +1,6 @@
 ---
+- include_tasks: repos.yml
+
 - name: "Install look and feel packages for {{ skyline_desktop }}"
   dnf:
     name: "{{ skyline_packages_lookandfeel_gnome['install'] }}"

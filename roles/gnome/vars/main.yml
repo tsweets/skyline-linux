@@ -36,22 +36,26 @@ skyline_desktop_titlebar_font:
   name: "Open Sans Bold 11"
   install:
     - open-sans-fonts
+#skyline_gtk_theme:
+#  name: Arc
+#  install:
+#    - arc-theme
 skyline_gtk_theme:
-  name: Arc
+  name: Nrodic
   install:
-    - arc-theme
+    - nordic-theme
 skyline_cursor_theme:
   name: breeze_cursors
   install:
     - breeze-cursor-theme
 skyline_icon_theme:
-  name: Numix-Circle
+  name: Zafiro
   install:
-    - numix-icon-theme-circle
+    - zafiro-icons
 skyline_shell_theme:
-  name: Arc
+  name: Nordic
   install:
-    - arc-theme    
+    - nordic-theme    
 
 skyline_shell_extensions:
   enable:

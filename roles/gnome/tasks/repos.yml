@@ -1,0 +1,6 @@
+- name: Add Skyline Nordic Theme Repo
+  yum_repository:
+    name: skyline-nordic-theme
+    description: Skyline Nordic Theme repo
+    baseurl: https://download.copr.fedorainfracloud.org/results/tsweets/nordic-theme/fedora-$releasever-$basearch/
+    skip_if_unavailable: yes
