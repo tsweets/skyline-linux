@@ -1,0 +1,13 @@
+---
+- name: add user Tony Sweets
+  user:
+    name: tsweets 
+    comment: Tony Sweets
+
+- name: Copy Greeter logo
+  copy:
+    src: files/greeter-logo/tsweets
+    dest: /var/lib/AccountsService/icons/tsweets
+    owner: root
+    group: root
+    mode: 644
