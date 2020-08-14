@@ -1,0 +1,37 @@
+---
+    
+# Use this COPR Repo for Intellij
+- name: Add Intellij Community Repo
+  yum_repository:
+    name: intellij-community
+    description: Intellij Community repo
+    baseurl: https://download.copr.fedorainfracloud.org/results/lkiesow/intellij-idea-community/fedora-$releasever-$basearch/
+    skip_if_unavailable: yes
+
+- name: Install Java Dev Items
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - java-11-openjdk
+    - java-11-openjdk-devel
+    - maven
+ 
+- name: Remove Java 8
+  dnf:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - java-1.8.0-openjdk-devel
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-headless
+    
+# Fix ME - this installs java 8 - have to do my own  
+# https://github.com/lkiesow/intellij-idea-community-rpm  
+# Should require java-11-devel
+- name: Install Intellij
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - intellij-idea-community

@@ -12,7 +12,8 @@ ansible-playbook skyline-linux.yml -i hosts -c local  --extra-vars "PASSWORD"
 - [x] Package/Install Nord Theme
 - [X] Install Zafiro Icons
 - [X] tony roll with avatar
-- [ ] Java role
+- [X] Java role
+- [ ] Intellij Ulitmate based off of Community Spec
 - [ ] Python role
 - [ ] Docker Roll
 - [ ] k3s role
