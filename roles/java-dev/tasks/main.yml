@@ -6,6 +6,7 @@
     name: intellij-community
     description: Intellij Community repo
     baseurl: https://download.copr.fedorainfracloud.org/results/lkiesow/intellij-idea-community/fedora-$releasever-$basearch/
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/lkiesow/intellij-idea-community/pubkey.gpg
     skip_if_unavailable: yes
 
 - name: Install Java Dev Items
