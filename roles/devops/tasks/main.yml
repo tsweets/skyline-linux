@@ -1,0 +1,27 @@
+---
+# tasks file for devops
+- yum_repository:
+    name: hashicorp
+    description: Hashicorp repo
+    baseurl: https://rpm.releases.hashicorp.com/fedora/$releasever/$basearch/stable
+    gpgkey: https://rpm.releases.hashicorp.com/gpg
+
+- name: Ensure Terraform is installed
+  dnf:
+    name: terraform
+    state: latest
+
+- name: Ensure Packer is installed
+  dnf:
+    name: packer
+    state: latest
+
+
+- name: Install Ansible
+  pip:
+    name: ansible
+
+- name: Install Molecule
+  pip:
+    name: molecule[lint]
+

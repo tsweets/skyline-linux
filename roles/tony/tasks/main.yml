@@ -3,6 +3,9 @@
   user:
     name: tsweets 
     comment: Tony Sweets
+    groups:
+      - wheel
+      - docker
 
 - name: Copy Greeter logo
   copy:
@@ -11,3 +14,4 @@
     owner: root
     group: root
     mode: 644
+

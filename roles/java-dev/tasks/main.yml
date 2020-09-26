@@ -1,6 +1,7 @@
 ---
     
 # Use this COPR Repo for Intellij
+#### TODO I need to create my own rpm - this 
 - name: Add Intellij Community Repo
   yum_repository:
     name: intellij-community
@@ -18,14 +19,14 @@
     - java-11-openjdk-devel
     - maven
  
-- name: Remove Java 8
-  dnf:
-    name: "{{ item }}"
-    state: absent
-  with_items:
-    - java-1.8.0-openjdk-devel
-    - java-1.8.0-openjdk
-    - java-1.8.0-openjdk-headless
+ # Need this one becuase of the Intellij Dep bug  - java-1.8.0-openjdk-devel
+#- name: Remove Java 8
+#  dnf:
+#    name: "{{ item }}"
+#    state: absent
+#  with_items:
+#    - java-1.8.0-openjdk
+#    - java-1.8.0-openjdk-headless
     
 # Fix ME - this installs java 8 - have to do my own  
 # https://github.com/lkiesow/intellij-idea-community-rpm  

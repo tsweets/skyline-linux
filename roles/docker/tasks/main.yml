@@ -1,0 +1,21 @@
+---
+# tasks file for docker
+- name: Install Docker packages
+  dnf:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - grubby
+    - moby-engine
+    - docker-compose
+
+
+- name: Start service docker, if not started
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Fix Fedora cgroups - need v1 for docker
+  shell: grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"

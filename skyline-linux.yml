@@ -1,10 +1,14 @@
 ---
 - hosts: localhost
+  vars_files:
+    - secrets.yml
   become: true
   roles:
   - bootstrap
   - system
   - packages
   - gnome
-  - tony
+  - docker
   - java-dev
+  - devops
+  - tony

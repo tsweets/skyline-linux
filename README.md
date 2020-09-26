@@ -9,13 +9,19 @@ ansible-playbook skyline-linux.yml -i hosts -c local  --extra-vars "PASSWORD"
 
 
 # TODO:
+- [ ] Docker Molecule Image for Fedora
 - [x] Package/Install Nord Theme
 - [X] Install Zafiro Icons
 - [X] tony roll with avatar
 - [X] Java role
+- [ ] DevOps role
+    - [X] Ansible
+    - [X] Molecule
+    - [ ] Terraform
+    - [ ] Packer
 - [ ] Intellij Ulitmate based off of Community Spec
 - [ ] Python role
-- [ ] Docker Roll
+- [X] Docker Roll
 - [ ] k3s role
 - [ ] zeal docs
 - [ ] spotify
@@ -40,7 +46,7 @@ ansible-playbook skyline-linux.yml -i hosts -c local  --extra-vars "PASSWORD"
 - [ ] jq
 - [ ] Gnmoe Sushi (Preview for Nautlius)
 - [ ] Timeshift
-- [ ] Chrome
+- [X] Chrome
 - [ ] Alacritty
 - [ ] Tilix
 - [ ] Geary
