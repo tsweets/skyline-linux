@@ -1,15 +1,46 @@
 ---
 # tasks file for docker
+- name: Add Docker Repository
+  ansible.builtin.yum_repository:
+    name: docker-ce-stable
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/fedora/37/$basearch/stable
+# Not Avail Yet    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/fedora/gpg
+    enabled: true
+
+
+- name: Remove Stocker Docker Components
+  dnf:
+    name: "{{ item }}"
+    state: absent
+  become: true
+  with_items: 
+    - docker
+    - docker-client
+    - docker-client-latest
+    - docker-common
+    - docker-latest
+    - docker-latest-logrotate
+    - docker-logrotate
+    - docker-selinux
+    - docker-engine-selinux
+    - docker-engine
+
+
+
 - name: Install Docker packages
   dnf:
     name: "{{ item }}"
     state: present
   become: true
   with_items:
-    - grubby
-    - moby-engine
-    - docker-compose
-
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
 
 - name: Start service docker, if not started
   service:
@@ -17,5 +48,9 @@
     state: started
     enabled: yes
 
-- name: Fix Fedora cgroups - need v1 for docker
-  shell: grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
+- name: Add System user to docker group
+  ansible.builtin.user:
+    name: tsweets
+    shell: /bin/bash
+    groups: docker
+    append: yes

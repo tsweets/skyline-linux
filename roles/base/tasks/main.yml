@@ -1,0 +1,28 @@
+---
+# tasks file for base
+- name: Disable SELinux
+  ansible.posix.selinux:
+    state: disabled    
+    
+- name: Ensure service account can sudo without passwd
+  template:
+    src: "ansible.sudoers.j2"
+    dest: "/etc/sudoers.d/{{ ansible_user}}"
+    owner: root
+    group: root
+    mode: 0440
+
+- name: Install Some Base packages
+  dnf:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - zsh
+
+- name: Create System ansible_user
+  ansible.builtin.user:
+    name: tsweets
+    shell: /usr/bin/zsh
+    groups: wheel
+    append: yes    

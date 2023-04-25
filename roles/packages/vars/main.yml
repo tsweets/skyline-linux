@@ -4,35 +4,47 @@
 ## Default set of packages common to all Sklyine desktops
 skyline_packages_common:
   install:
+    # Gnome Desktop
+    - gnome-tweaks
+    - gnome-extensions-app
+    - gnome-shell-extension-user-theme
+
+    # Ansible
+    - python3-ansible-lint
+
     # Archiving
     - p7zip
     - p7zip-plugins
 
+    # Kubernetes Things
+    - kubernetes-client
+
+
     # Cloud
-    - owncloud-client
+  #  - owncloud-client
 
     # Images
     - gimp
     - inkscape
 
     # Device support
-    - akmods
-    - cups-bjnp
-    - dkms
-    - epson-inkjet-printer-escpr # support for recent Epson inkjet printers
-    - hplip # support for extra HP printers
-    - kernel-devel
-    - libsane-hpaio # support for extra HP scanners
-    - libva-intel-driver # HW video decode for intel
-    - lm_sensors-sensord
-    - memtest86+
-    - pptp-setup
-    - sane-backends
-    - sane-backends-drivers-cameras
-    - sane-backends-drivers-scanners
-    - spice-server
-    - spice-vdagent
-    - splix
+    # - akmods
+    # - cups-bjnp
+    # - dkms
+    # - epson-inkjet-printer-escpr # support for recent Epson inkjet printers
+    # - hplip # support for extra HP printers
+    # - kernel-devel
+    # - libsane-hpaio # support for extra HP scanners
+    # - libva-intel-driver # HW video decode for intel
+    # - lm_sensors-sensord
+    # - memtest86+
+    # - pptp-setup
+    # - sane-backends
+    # - sane-backends-drivers-cameras
+    # - sane-backends-drivers-scanners
+    # - spice-server
+    # - spice-vdagent
+    # - splix
 
     # Filesystems
     - btrfs-progs
@@ -47,7 +59,8 @@ skyline_packages_common:
     - alsa-utils
     - ffmpegthumbnailer
     - flac
-    - gphoto2 #for camera support in shotwell
+    # for camera support in shotwell
+    - gphoto2
     - gstreamer-ffmpeg
     - gstreamer1-libav
     - gstreamer1-plugins-bad-free
@@ -100,7 +113,7 @@ skyline_packages_common:
     - mlocate
     - ntfsprogs
     - powertop
-    #- pybluez
+    # - pybluez
     - redhat-lsb-core
     - vim
 
@@ -120,7 +133,7 @@ skyline_packages_common:
 
     # Web
     - firefox
-    - mozilla-ublock-origin
+    # - mozilla-ublock-origin
   remove:
     - abrt
     - gnome-abrt
