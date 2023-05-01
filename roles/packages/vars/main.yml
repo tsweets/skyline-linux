@@ -58,6 +58,7 @@ skyline_packages_common:
     - alsa-plugins-pulseaudio
     - alsa-utils
     - ffmpegthumbnailer
+    - ffmpeg-free
     - flac
     # for camera support in shotwell
     - gphoto2
